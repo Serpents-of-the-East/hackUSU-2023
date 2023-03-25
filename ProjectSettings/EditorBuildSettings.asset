@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ForestPath_Day.unity
     guid: 9c623a1f6a4f4024b85a34f3be08046f
+  - enabled: 1
+    path: Assets/Scenes/ForestPathCombat_Day 1.unity
+    guid: 6c40c9a964489124db089d3969ed6ca5
   m_configObjects: {}

@@ -12,8 +12,8 @@ public class RandomizedEnemySpawner : MonoBehaviour
     private float accumulatedDistance;
     private Vector3 previousPosition;
 
-    private Collider spawnArea;
-
+    private GameObject spawner;
+    private Enemies enemies;
 
 
     // Start is called before the first frame update
@@ -24,7 +24,14 @@ public class RandomizedEnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        spawnArea = other;
+        for (int i = 0; i < spawners.Length; i++)
+        {
+            if (other.name == spawners[i].name)
+            {
+                spawner = spawners[i];
+                enemies = spawner.GetComponent<Enemies>();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +42,7 @@ public class RandomizedEnemySpawner : MonoBehaviour
         if (accumulatedDistance > distanceBeforeEnemySpawn)
         {
             float randomValue = Random.Range(0f, 1f);
+            List<GameObject> enemiesToSpawn = enemies.GetRandomNumEnemies(); // TODO: Send these prefabs to the battle scene so we can use them
             if (movement.isRunning)
             {
                 if (randomValue > 0.3)
