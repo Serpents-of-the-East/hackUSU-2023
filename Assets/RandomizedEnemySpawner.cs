@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RandomizedEnemySpawner : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class RandomizedEnemySpawner : MonoBehaviour
     private Collider spawnArea;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
-        previousPosition= transform.position;
+        previousPosition = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,14 +39,28 @@ public class RandomizedEnemySpawner : MonoBehaviour
             {
                 if (randomValue > 0.3)
                 {
-                    Debug.Log("Random Enemy spawn Running");
+                    GameObject player = GameObject.FindGameObjectWithTag("Player");
+                    GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                    Debug.Log("Random Enemy spawn Running"); 
+                    GameObject travelObj = GameObject.FindGameObjectWithTag("TravelHandler");
+                    TravelHandler travelHandler = travelObj.GetComponent<TravelHandler>();
+                    travelHandler.loadBackCameraPosition = mainCamera.transform.position;
+                    travelHandler.loadBackPlayerPosition = player.transform.position;
+                    SceneManager.LoadScene("ForestPathCombat_Day 1");
                 }
             }
             else
             {
                 if (randomValue > 0.6)
                 {
+                    GameObject player = GameObject.FindGameObjectWithTag("Player");
+                    GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
                     Debug.Log("Random Enemy Spawn Walking");
+                    GameObject travelObj = GameObject.FindGameObjectWithTag("TravelHandler");
+                    TravelHandler travelHandler = travelObj.GetComponent<TravelHandler>();
+                    travelHandler.loadBackCameraPosition = mainCamera.transform.position;
+                    travelHandler.loadBackPlayerPosition = player.transform.position;
+                    SceneManager.LoadScene("ForestPathCombat_Day 1");
                 }
             }
             accumulatedDistance -= distanceBeforeEnemySpawn;
