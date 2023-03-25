@@ -1639,6 +1639,7 @@ MonoBehaviour:
   - {fileID: 1979773487}
   maxHealth: 200
   currentHealth: 50
+  originalWidth: 0
 --- !u!1001 &1285988202
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -268,6 +268,8 @@ GameObject:
   - component: {fileID: 5135586963174950684}
   - component: {fileID: 5135586963174950659}
   - component: {fileID: 8497435843741345091}
+  - component: {fileID: 866211863284171325}
+  - component: {fileID: 1176018784}
   m_Layer: 0
   m_Name: rain
   m_TagString: Untagged
@@ -385,6 +387,7 @@ MonoBehaviour:
   magicAttack: {fileID: 7335341114316984355}
   physCharging: {fileID: 7316435328518708466}
   physAttack: {fileID: 3997272725532395203}
+  animator: {fileID: 0}
   charging: {fileID: 9112176787231562394}
   attack: {fileID: 4336690244959466467}
   magicChargingSoundEffect: {fileID: 8300000, guid: 5d37d793bda90a44bb091d0815871e00,
@@ -393,6 +396,46 @@ MonoBehaviour:
   physChargingSoundEffect: {fileID: 0}
   physAttackSoundEffect: {fileID: 8300000, guid: 95a4f54dd990efa41b0bb1f342f67043,
     type: 3}
+--- !u!114 &866211863284171325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135586963174950658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ba2493347c54b46b5ee02f8bdcc56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {r: 0.9056604, g: 0.4465218, b: 0.13243146, a: 0}
+  ice: {r: 0.67768776, g: 0.9150943, b: 0.84255403, a: 0}
+  lightning: {r: 0.8962264, g: 0.81050014, b: 0.063412234, a: 0}
+  wind: {r: 0.37121755, g: 0.8113208, b: 0.37244457, a: 0}
+  dark: {r: 0.30380115, g: 0.13269848, b: 0.3962264, a: 0}
+  lightColor: {r: 0.9811321, g: 0.9752533, b: 0.763617, a: 0}
+  poison: {r: 0.46519655, g: 0.374466, b: 0.9339623, a: 0}
+  water: {r: 0.25943398, g: 0.6445537, b: 1, a: 0}
+  ground: {r: 0.5188679, g: 0.32438585, b: 0.23740655, a: 0}
+  magicCharge: {fileID: 231892886714063866}
+  magicAttack: {fileID: 7335341114316984355}
+  physCharge: {fileID: 7316435328518708466}
+  physAttack: {fileID: 3997272725532395203}
+--- !u!114 &1176018784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135586963174950658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608adba20e384304294694d9b1cae836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhysical: 0
+  isMagic: 0
+  animator: {fileID: 5135586963174950659}
 --- !u!1001 &3397848445572742361
 PrefabInstance:
   m_ObjectHideFlags: 0
