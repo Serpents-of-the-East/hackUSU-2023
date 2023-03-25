@@ -390,7 +390,8 @@ MonoBehaviour:
   magicChargingSoundEffect: {fileID: 0}
   magicAttackSoundEffect: {fileID: 8300000, guid: 2feeb69b285870a4ba575d026bf057ea,
     type: 3}
-  physChargingSoundEffect: {fileID: 0}
+  physChargingSoundEffect: {fileID: 8300000, guid: 6999651252588dc498a83c844aac1201,
+    type: 3}
   physAttackSoundEffect: {fileID: 8300000, guid: 571d2c4e76f7b154aa762bf2ec895a89,
     type: 3}
 --- !u!1001 &202165858932568519
@@ -637,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 2332763450378400939, guid: 6ec0d7f0f8744ad48aaf49ac286c334d,
         type: 3}
       propertyPath: lengthInSec
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2332763450378400939, guid: 6ec0d7f0f8744ad48aaf49ac286c334d,
         type: 3}
