@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     private Vector3 movement;
     private Rigidbody rb;
     public bool isRunning;
-
+    public Interact interact;
     public Animator animator;
 
 
@@ -24,46 +24,60 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.MovePosition(rb.position + movement * Time.deltaTime * speed * (isRunning ? runBoost : 1f));
-        
-        if (movement.x > 0)
+        if (!interact.isInteracting)
         {
-            animator.SetInteger("walkingDirection", 1);
+            rb.MovePosition(rb.position + movement * Time.deltaTime * speed * (isRunning ? runBoost : 1f));
+
+            if (movement.x > 0)
+            {
+                animator.SetInteger("walkingDirection", 1);
+            }
+            else if (movement.x < 0)
+            {
+                animator.SetInteger("walkingDirection", 3);
+            }
+            else if (movement.z > 0)
+            {
+                animator.SetInteger("walkingDirection", 0);
+            }
+            else if (movement.z < 0)
+            {
+                animator.SetInteger("walkingDirection", 2);
+            }
         }
-        else if (movement.x < 0)
+        else
         {
-            animator.SetInteger("walkingDirection", 3);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+
         }
-        else if (movement.z > 0)
-        {
-            animator.SetInteger("walkingDirection", 0);
-        }
-        else if (movement.z < 0)
-        {
-            animator.SetInteger("walkingDirection", 2);
-        }
+
 
     }
 
     public void OnMovement(InputValue value)
     {
-        movement = value.Get<Vector3>();
-
-        if (movement == Vector3.zero)
+        if (!interact.isInteracting)
         {
-            animator.SetBool("isWalking", false);
-        }
-        else
-        {
-            animator.SetBool("isWalking", true);
-        }
+            movement = value.Get<Vector3>();
 
+            if (movement == Vector3.zero)
+            {
+                animator.SetBool("isWalking", false);
+            }
+            else
+            {
+                animator.SetBool("isWalking", true);
+            }
+        }
     }
 
     public void OnRun(InputValue inputAction)
     {
-        animator.SetBool("isRunning", inputAction.isPressed);
-        isRunning = inputAction.isPressed;
-
+        if (!interact.isInteracting)
+        {
+            animator.SetBool("isRunning", inputAction.isPressed);
+            isRunning = inputAction.isPressed;
+        }
     }
 }
