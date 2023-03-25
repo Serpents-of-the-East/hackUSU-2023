@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8105721174948737355}
   - component: {fileID: 8105721174948737354}
+  - component: {fileID: 8105721174062175192}
   m_Layer: 0
   m_Name: TravelHandler
   m_TagString: TravelHandler
@@ -49,3 +50,19 @@ MonoBehaviour:
   cityToForestLocation: {x: -9.722, y: 0.42, z: -2.076}
   cityToForestCameraLocation: {x: -9.814, y: 2.26, z: -5.95}
   lastPointTouched: 0
+  currentOverworldArea: 
+  loadFromCombat: 0
+  loadBackPlayerPosition: {x: 0, y: 0, z: 0}
+  loadBackCameraPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &8105721174062175192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8105721174948737357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ec659825b272d40bdce0dc2b207d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
