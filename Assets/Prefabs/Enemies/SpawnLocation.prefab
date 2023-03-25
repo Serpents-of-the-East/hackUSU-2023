@@ -200,7 +200,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicEnemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6382469001440661045, guid: 4a805a67c21221a42a01dc5ffca4223e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a805a67c21221a42a01dc5ffca4223e, type: 3}
 --- !u!4 &242558678602854842 stripped
 Transform:
@@ -208,3 +209,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6479062298642369117}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &7424350145283384694 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4531421438972276523, guid: 4a805a67c21221a42a01dc5ffca4223e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6479062298642369117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9010644350029650587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2658950749795487942, guid: 4a805a67c21221a42a01dc5ffca4223e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6479062298642369117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1528147214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010644350029650587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94a92c7a2dcb324f906b0cbabecb7b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
+  animator: {fileID: 7424350145283384694}
+  enemyInformationText: {fileID: 4900000, guid: 81ef665d4d49bca458e1ab71f2ab05f3,
+    type: 3}
+  isDead: 0

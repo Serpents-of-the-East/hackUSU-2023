@@ -1,0 +1,30 @@
+Attack
+100.0
+0.0
+false
+false
+Spear them!
+120.0
+0.0
+false
+false
+Double Stab
+120.0
+6.0
+false
+false
+Knuckle Pop
+30.0
+-20.0
+true
+false
+Poison Blade
+130.0
+14.0
+false
+true
+Throwing Star
+110.0
+3.0
+false
+true

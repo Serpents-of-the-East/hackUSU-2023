@@ -50,7 +50,7 @@ public class EnemyScript : MonoBehaviour
         animator.SetBool("isAttacking", isAttacking);
     }
 
-    void TakeDamage(float amount, bool isPhysical)
+    public void TakeDamage(float amount, bool isPhysical)
     {
         if (isPhysical)
         {
@@ -61,13 +61,13 @@ public class EnemyScript : MonoBehaviour
             enemyInformation.Health = amount * enemyInformation.ElementalDefense;
         }
 
-        if (enemyInformation.Health < 0)
+        if (enemyInformation.Health <= 0)
         {
             isDead = true;
         }
     }
 
-    float DealDamage(float amount, bool isPhysical)
+    public float DealDamage(float amount, bool isPhysical)
     {
         if (isPhysical)
         {
@@ -79,8 +79,21 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    float GetSpeed()
+    public float GetSpeed()
     {
         return Random.Range(enemyInformation.Speed - 0.1f, enemyInformation.Speed + 0.1f);
+    }
+
+    public void StartAnimation()
+    {
+        animator.SetBool("isAttacking", true);
+        isAttacking = true;
+    }
+
+
+    public void EndAnimation()
+    {
+        isAttacking = false;
+        animator.SetBool("isAttacking", false);
     }
 }
