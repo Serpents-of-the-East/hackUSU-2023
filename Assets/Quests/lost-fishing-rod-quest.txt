@@ -1,0 +1,9 @@
+4
+Find the Fishing Rod
+Hello adventurer!
+I was happily fishing when I got attacked by a pack of slimes and they stole my fishing rod!
+Those foul creatures steal everything from me.
+They are never there when I go grab my stuff back from them, but today, I don't want to go. 
+So you will go for me! Their hideout is usually west of the lake so it shouldn't be too far.
+Fishing Rod
+false
