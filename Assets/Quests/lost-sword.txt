@@ -1,0 +1,8 @@
+2
+Find Kael's sword.
+Hello adventurer! My name is Kael, and I am in desperate need of your help!
+My sword that has been passed down through 10 generations has been lost.
+I had placed the sword next to me when I was taking a break in the grass, but I completely forgot about it and lost it! 
+I would be especially grateful if you would assist me and help me find my sword.
+Kael's Sword
+false
