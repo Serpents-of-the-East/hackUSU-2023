@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+
+
 public class InteractableNPC : MonoBehaviour
 {
     public GameObject dialogueTexture;
@@ -12,6 +14,7 @@ public class InteractableNPC : MonoBehaviour
     public bool interactable;
     public bool interactedWith;
     public TextAsset dialogue;
+    public TextAsset questTxtFile;
     public Canvas canvasDialogueInGame;
     public TMP_Text textDialogueInGame;
     public int lineOfText = 0;
@@ -19,6 +22,8 @@ public class InteractableNPC : MonoBehaviour
     public bool firstInteraction = true;
     public int linesInText;
     public string[] lines;
+    public string[] questLines;
+    public Quest quest;
     public AudioClip[] audioClips;
     public AudioSource audioSource;
 
@@ -31,6 +36,16 @@ public class InteractableNPC : MonoBehaviour
             lines = dialogue.text.Split("\n"[0]);
             currentLine = lines[0];
             linesInText = lines.Length;
+
+            quest = new Quest();
+
+            questLines = questTxtFile.text.Split("\n"[0]);
+
+            quest.id = int.Parse(questLines[0]);
+            quest.Name = questLines[1];
+            quest.Description = questLines[2];
+            quest.Required = bool.Parse(questLines[3]);
+            quest.Completed = false;
         }
     }
 
