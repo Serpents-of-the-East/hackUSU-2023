@@ -123,7 +123,6 @@ public class MenuController : MonoBehaviour
         for (int i = 0; i < opponents.Count; i++)
         {
             selectedMoves.Add(1);
-            
         }
     }
 
