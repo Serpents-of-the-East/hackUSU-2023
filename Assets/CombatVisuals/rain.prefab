@@ -410,6 +410,22 @@ PrefabInstance:
       propertyPath: lengthInSec
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5381421133692149803, guid: 5f17da8a0d24fd24f9f84e185922322f,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 5761045012096717146, guid: 2e685ce92e8f476498b15568fea05ba7,
+        type: 3}
+    - target: {fileID: 5381421133692149803, guid: 5f17da8a0d24fd24f9f84e185922322f,
+        type: 3}
+      propertyPath: LightsModule.ratio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381421133692149803, guid: 5f17da8a0d24fd24f9f84e185922322f,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7157816261739571425, guid: 5f17da8a0d24fd24f9f84e185922322f,
         type: 3}
       propertyPath: m_RootOrder
@@ -545,6 +561,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RainPhysAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 976588310465113439, guid: 8264f83dac07f28448d15ddd0f243dd6,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 5761045012096717146, guid: 2e685ce92e8f476498b15568fea05ba7,
+        type: 3}
+    - target: {fileID: 976588310465113439, guid: 8264f83dac07f28448d15ddd0f243dd6,
+        type: 3}
+      propertyPath: LightsModule.ratio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 976588310465113439, guid: 8264f83dac07f28448d15ddd0f243dd6,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 976588310465113439, guid: 8264f83dac07f28448d15ddd0f243dd6,
         type: 3}
@@ -802,6 +834,22 @@ PrefabInstance:
       propertyPath: lengthInSec
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8035144541452833945, guid: d961f4be7ce49c2499e8f340f709862d,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 5761045012096717146, guid: 2e685ce92e8f476498b15568fea05ba7,
+        type: 3}
+    - target: {fileID: 8035144541452833945, guid: d961f4be7ce49c2499e8f340f709862d,
+        type: 3}
+      propertyPath: LightsModule.ratio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035144541452833945, guid: d961f4be7ce49c2499e8f340f709862d,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d961f4be7ce49c2499e8f340f709862d, type: 3}
 --- !u!198 &231892886714063866 stripped
@@ -823,6 +871,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5135586963174950685}
     m_Modifications:
+    - target: {fileID: 1349975320055854956, guid: 4703416682c7c3f46a6153c74f2a3c13,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 5761045012096717146, guid: 2e685ce92e8f476498b15568fea05ba7,
+        type: 3}
+    - target: {fileID: 1349975320055854956, guid: 4703416682c7c3f46a6153c74f2a3c13,
+        type: 3}
+      propertyPath: LightsModule.ratio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349975320055854956, guid: 4703416682c7c3f46a6153c74f2a3c13,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4271416390901661606, guid: 4703416682c7c3f46a6153c74f2a3c13,
         type: 3}
       propertyPath: m_RootOrder
