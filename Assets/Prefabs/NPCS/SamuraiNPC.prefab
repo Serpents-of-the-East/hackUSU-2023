@@ -451,6 +451,7 @@ MonoBehaviour:
   interactable: 1
   interactedWith: 0
   dialogue: {fileID: 4900000, guid: fd11d500a6a5c9844994d00ca90fe361, type: 3}
+  questTxtFile: {fileID: 4900000, guid: 9b6ff717e2086e54587386c6afaa7f95, type: 3}
   canvasDialogueInGame: {fileID: 2925388592773297596}
   textDialogueInGame: {fileID: 1413619174}
   lineOfText: 0
@@ -458,6 +459,7 @@ MonoBehaviour:
   firstInteraction: 1
   linesInText: 0
   lines: []
+  questLines: []
   audioClips:
   - {fileID: 8300000, guid: 941c3cb0b5cdd6f4698b989e2b57c883, type: 3}
   - {fileID: 8300000, guid: 97fa1f7e9a5d6b94fa9d3f8858dfe8e0, type: 3}
