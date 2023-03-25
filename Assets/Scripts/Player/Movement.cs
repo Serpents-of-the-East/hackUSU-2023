@@ -6,46 +6,64 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     public float speed;
+    public float runBoost = 2f;
     private Vector3 movement;
     private Rigidbody rb;
+    public bool isRunning;
 
     public Animator animator;
-    Vector3 lastPosition;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        lastPosition = transform.position;
-        //animator = this.transform.GetChild(0).GetComponent<Animator>();
-        
+        rb = GetComponent<Rigidbody>();        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (movement.x != 0 || movement.y != 0 || movement.z != 0)
+        rb.MovePosition(rb.position + movement * Time.deltaTime * speed * (isRunning ? runBoost : 1f));
+        
+        if (movement.x > 0)
         {
-            rb.MovePosition(rb.position + movement * Time.deltaTime * speed);
+            animator.SetInteger("walkingDirection", 1);
         }
-        else
+        else if (movement.x < 0)
         {
-            animator.SetBool("isWalking", false);
+            animator.SetInteger("walkingDirection", 3);
         }
-
+        else if (movement.z > 0)
+        {
+            animator.SetInteger("walkingDirection", 0);
+        }
+        else if (movement.z < 0)
+        {
+            animator.SetInteger("walkingDirection", 2);
+        }
 
     }
 
     public void OnMovement(InputValue value)
     {
         movement = value.Get<Vector3>();
-        animator.SetBool("isWalking", true);
+
+        if (movement == Vector3.zero)
+        {
+            animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            animator.SetBool("isWalking", true);
+        }
+
     }
 
-    public void OnJump(InputAction inputAction)
+    public void OnRun(InputValue inputAction)
     {
-        Debug.Log("testing jump");
+        animator.SetBool("isRunning", inputAction.isPressed);
+        isRunning = inputAction.isPressed;
+
     }
 }

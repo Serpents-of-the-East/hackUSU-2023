@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8139306236123809429}
   - component: {fileID: 3940227790074720740}
+  - component: {fileID: 5194426385080794714}
   m_Layer: 3
   m_Name: PT_Pine_Tree_03_green
   m_TagString: Untagged
@@ -314,3 +315,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5624711370870518306}
   m_Enabled: 1
+--- !u!136 &5194426385080794714
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916932963258096687}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.22250897
+  m_Height: 5.699585
+  m_Direction: 1
+  m_Center: {x: -0.030000001, y: 2.3497925, z: -0.056734502}
