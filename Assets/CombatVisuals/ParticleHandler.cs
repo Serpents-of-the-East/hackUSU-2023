@@ -10,7 +10,7 @@ public class ParticleHandler : MonoBehaviour
     public ParticleSystem magicAttack;
     public ParticleSystem physCharging;
     public ParticleSystem physAttack;
-
+    public Animator animator;
     public AudioSource charging;
     public AudioSource attack;
 
@@ -85,5 +85,6 @@ public class ParticleHandler : MonoBehaviour
     {
         attack.Stop();
     }
-    
+   
+
 }
