@@ -115,7 +115,6 @@ public class MenuController : MonoBehaviour
 
     public void OnBack(InputValue inputValue)
     {
-        Debug.Log("This was called");
         if (inputValue.isPressed && eventSystem.activeSelf)
         {
             if (AttackMenu.activeSelf)
