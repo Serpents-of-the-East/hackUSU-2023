@@ -35,6 +35,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Value"",
+                    ""id"": ""4b696095-38ab-41b6-968c-822ae8a0f642"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -147,6 +156,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47ca75f5-7bfe-4771-84ba-748984969c2b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa9e9070-6246-43ec-bba8-dbd3cb5de4e8"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -189,6 +220,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // InGame
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         m_InGame_Movement = m_InGame.FindAction("Movement", throwIfNotFound: true);
+        m_InGame_Run = m_InGame.FindAction("Run", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,11 +283,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InGame;
     private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
     private readonly InputAction m_InGame_Movement;
+    private readonly InputAction m_InGame_Run;
     public struct InGameActions
     {
         private @PlayerInputs m_Wrapper;
         public InGameActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InGame_Movement;
+        public InputAction @Run => m_Wrapper.m_InGame_Run;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -268,6 +302,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Run.started += instance.OnRun;
+            @Run.performed += instance.OnRun;
+            @Run.canceled += instance.OnRun;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -275,6 +312,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Run.started -= instance.OnRun;
+            @Run.performed -= instance.OnRun;
+            @Run.canceled -= instance.OnRun;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -313,5 +353,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public interface IInGameActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
     }
 }
