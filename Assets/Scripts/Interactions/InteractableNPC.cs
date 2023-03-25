@@ -44,7 +44,9 @@ public class InteractableNPC : MonoBehaviour
             quest.id = int.Parse(questLines[0]);
             quest.Name = questLines[1];
             quest.Description = questLines[2];
-            quest.Required = bool.Parse(questLines[3]);
+            quest.CompletionDescription = questLines[5];
+            quest.KeyItem = questLines[6];
+            quest.Required = bool.Parse(questLines[7]);
             quest.Completed = false;
         }
     }
@@ -57,11 +59,24 @@ public class InteractableNPC : MonoBehaviour
             dialogueTexture.SetActive(false);
             canvasDialogueInGame.gameObject.SetActive(true);
             textDialogueInGame.text = currentLine;
-            audioSource.clip = audioClips[lineOfText];
-            audioSource.Play();
+
+            if (lineOfText < audioClips.Length)
+            {
+                audioSource.clip = audioClips[lineOfText];
+                audioSource.Play();
+            }
               
             firstInteraction = false;
             interactedWith = false;
+
+            QuestManagement questManagement = FindObjectOfType<QuestManagement>();
+            questManagement.StartQuest(new QuestManagement.QuestStep()
+            {
+                questName = quest.Name,
+                currentStep = 0,
+                keyItem = quest.KeyItem,
+                allSteps = new string[] { quest.Description, quest.CompletionDescription },
+            });
 
         } 
         else if (interactedWith && !completedTalkingTo)
@@ -72,13 +87,13 @@ public class InteractableNPC : MonoBehaviour
             {
                 currentLine = lines[lineOfText];
                 textDialogueInGame.text = currentLine;
-                if (audioSource != null && audioSource.isPlaying)
+                if (audioSource != null && audioSource.isPlaying && lineOfText < audioClips.Length)
                 {
                     audioSource.Stop();
                     audioSource.clip = audioClips[lineOfText];
                     audioSource.Play();
                 }
-                else if (audioSource != null)
+                else if (audioSource != null && lineOfText < audioClips.Length)
                 {
                     audioSource.clip = audioClips[lineOfText];
                     audioSource.Play();
@@ -93,6 +108,8 @@ public class InteractableNPC : MonoBehaviour
                 completedTalkingTo = true;
                 interactable = false;
                 canvasDialogueInGame.gameObject.SetActive(false);
+
+
             }
 
             interactedWith = false;
