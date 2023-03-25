@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8324691325662006903}
   - component: {fileID: 940305908091222255}
   - component: {fileID: 5143550703023037827}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PT_Fruit_Tree_01_green_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1164602935277360391}
   m_RootOrder: 1
@@ -51,10 +52,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1973228233241776061
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164602935277360391}
   - component: {fileID: 6229498194940338806}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PT_Fruit_Tree_01_green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +111,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2469286659358223274}
   - {fileID: 8324691325662006903}
@@ -152,7 +157,7 @@ GameObject:
   - component: {fileID: 2469286659358223274}
   - component: {fileID: 3589247910019397516}
   - component: {fileID: 8251775048657450034}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PT_Fruit_Tree_01_green_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,6 +174,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1164602935277360391}
   m_RootOrder: 0
@@ -192,10 +198,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -221,6 +229,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6262691154084524410
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +241,7 @@ GameObject:
   - component: {fileID: 5134591824467236821}
   - component: {fileID: 8287977009070255178}
   - component: {fileID: 6788130300613750309}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PT_Fruit_Tree_01_green_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,6 +258,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1164602935277360391}
   m_RootOrder: 2
@@ -272,10 +282,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -301,3 +313,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
