@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 1190124587486694794}
   isSelected: 0
+  menuController: {fileID: 0}
 --- !u!1 &7456384410326646349
 GameObject:
   m_ObjectHideFlags: 0

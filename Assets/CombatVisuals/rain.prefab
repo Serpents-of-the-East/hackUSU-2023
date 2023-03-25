@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 5135586963174950659}
   - component: {fileID: 8497435843741345091}
   - component: {fileID: 866211863284171325}
+  - component: {fileID: 1176018784}
   m_Layer: 0
   m_Name: rain
   m_TagString: Untagged
@@ -386,6 +387,7 @@ MonoBehaviour:
   magicAttack: {fileID: 7335341114316984355}
   physCharging: {fileID: 7316435328518708466}
   physAttack: {fileID: 3997272725532395203}
+  animator: {fileID: 0}
   charging: {fileID: 9112176787231562394}
   attack: {fileID: 4336690244959466467}
   magicChargingSoundEffect: {fileID: 8300000, guid: 5d37d793bda90a44bb091d0815871e00,
@@ -419,6 +421,21 @@ MonoBehaviour:
   magicAttack: {fileID: 7335341114316984355}
   physCharge: {fileID: 7316435328518708466}
   physAttack: {fileID: 3997272725532395203}
+--- !u!114 &1176018784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135586963174950658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608adba20e384304294694d9b1cae836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhysical: 0
+  isMagic: 0
+  animator: {fileID: 5135586963174950659}
 --- !u!1001 &3397848445572742361
 PrefabInstance:
   m_ObjectHideFlags: 0

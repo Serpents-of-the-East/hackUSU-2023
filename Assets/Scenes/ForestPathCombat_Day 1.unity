@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPhysical: 0
-  isMagical: 0
+  isMagic: 0
   animator: {fileID: 502254232}
 --- !u!95 &502254232 stripped
 Animator:
@@ -448,8 +448,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPhysical: 0
-  isMagical: 0
+  isMagic: 0
   animator: {fileID: 696697262}
+--- !u!1 &726907217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6080049912264335072, guid: 84b9c29b60abddc429cb0bbfa765d918,
+    type: 3}
+  m_PrefabInstance: {fileID: 1285988202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &727646167
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPhysical: 0
-  isMagical: 0
+  isMagic: 0
   animator: {fileID: 1118368998}
 --- !u!1 &1176018779 stripped
 GameObject:
@@ -793,7 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPhysical: 0
-  isMagical: 0
+  isMagic: 0
   animator: {fileID: 1176018781}
 --- !u!1001 &1285988202
 PrefabInstance:
@@ -867,6 +873,11 @@ PrefabInstance:
       propertyPath: overview
       value: 
       objectReference: {fileID: 1914381039}
+    - target: {fileID: 6080049912947056829, guid: 84b9c29b60abddc429cb0bbfa765d918,
+        type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 726907217}
     - target: {fileID: 6080049912947056829, guid: 84b9c29b60abddc429cb0bbfa765d918,
         type: 3}
       propertyPath: choosingOpponent
@@ -979,18 +990,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84b9c29b60abddc429cb0bbfa765d918, type: 3}
---- !u!114 &1585627984 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6080049912264335100, guid: 84b9c29b60abddc429cb0bbfa765d918,
-    type: 3}
-  m_PrefabInstance: {fileID: 1285988202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1659667316 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 331963892024509642, guid: 5dd0f7f25f08e184ca49b3597cc85bf6,
@@ -1139,7 +1138,7 @@ MonoBehaviour:
   m_Actions: {fileID: -944628639613478452, guid: b3caa6b758e802248a774d0a2f074d67,
     type: 3}
   m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 1585627984}
+  m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []

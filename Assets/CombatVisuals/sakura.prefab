@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 5009961789946298233}
   - component: {fileID: 5009961789946298232}
   - component: {fileID: 3089436725539324080}
+  - component: {fileID: 1118369001}
   m_Layer: 0
   m_Name: sakura
   m_TagString: Untagged
@@ -386,6 +387,7 @@ MonoBehaviour:
   magicAttack: {fileID: 5009961789388049816}
   physCharging: {fileID: 7881324378869657243}
   physAttack: {fileID: 7338991951564987191}
+  animator: {fileID: 0}
   charging: {fileID: 5009961789501830999}
   attack: {fileID: 5009961788943330331}
   magicChargingSoundEffect: {fileID: 0}
@@ -420,6 +422,21 @@ MonoBehaviour:
   magicAttack: {fileID: 5009961789388049816}
   physCharge: {fileID: 7881324378869657243}
   physAttack: {fileID: 7338991951564987191}
+--- !u!114 &1118369001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009961789946298239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608adba20e384304294694d9b1cae836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhysical: 0
+  isMagic: 0
+  animator: {fileID: 5009961789946298233}
 --- !u!1001 &202165858932568519
 PrefabInstance:
   m_ObjectHideFlags: 0

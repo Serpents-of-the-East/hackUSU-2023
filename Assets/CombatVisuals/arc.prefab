@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7268035730394183639}
   - component: {fileID: 7268035730394183636}
   - component: {fileID: 3211082039039155217}
+  - component: {fileID: 696697265}
   m_Layer: 0
   m_Name: arc
   m_TagString: Untagged
@@ -129,6 +130,7 @@ MonoBehaviour:
   magicAttack: {fileID: 6324712651036190444}
   physCharging: {fileID: 0}
   physAttack: {fileID: 8352412641506071626}
+  animator: {fileID: 0}
   charging: {fileID: 7268035731222758807}
   attack: {fileID: 7268035731615194891}
   magicChargingSoundEffect: {fileID: 8300000, guid: 2bc96e9f0e95a6c4bbe8fcd855dbaef9,
@@ -163,6 +165,21 @@ MonoBehaviour:
   magicAttack: {fileID: 6324712651036190444}
   physCharge: {fileID: 0}
   physAttack: {fileID: 8352412641506071626}
+--- !u!114 &696697265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268035730394183632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608adba20e384304294694d9b1cae836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhysical: 0
+  isMagic: 0
+  animator: {fileID: 7268035730394183639}
 --- !u!1 &7268035731222758801
 GameObject:
   m_ObjectHideFlags: 0
