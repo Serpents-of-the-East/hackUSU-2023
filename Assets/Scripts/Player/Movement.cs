@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
 
     public Animator animator;
+    Vector3 lastPosition;
 
 
 
@@ -17,14 +18,22 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        lastPosition = transform.position;
+        //animator = this.transform.GetChild(0).GetComponent<Animator>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.MovePosition(rb.position + movement * Time.deltaTime * speed);
+        if (movement.x != 0 || movement.y != 0 || movement.z != 0)
+        {
+            rb.MovePosition(rb.position + movement * Time.deltaTime * speed);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
 
 
     }
@@ -32,8 +41,7 @@ public class Movement : MonoBehaviour
     public void OnMovement(InputValue value)
     {
         movement = value.Get<Vector3>();
-        Debug.Log("This was called");
-
+        animator.SetBool("isWalking", true);
     }
 
     public void OnJump(InputAction inputAction)

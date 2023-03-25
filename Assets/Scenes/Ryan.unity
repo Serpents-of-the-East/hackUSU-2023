@@ -616,6 +616,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7455091595675263056, guid: cf7c0ee01ae91f14bb0a251fef58d6c1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382991262215506550, guid: cf7c0ee01ae91f14bb0a251fef58d6c1,
+        type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8382991262215506550, guid: cf7c0ee01ae91f14bb0a251fef58d6c1,
         type: 3}
       propertyPath: speed.x
@@ -779,7 +789,11 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9b4c9d4-c2ec-4249-b315-02cc7e343f48
+    m_ActionName: InGame/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: InGame
@@ -801,6 +815,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &610691007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7306720315961370326, guid: c1179ec3eb02b184096016de073c6811,
+    type: 3}
+  m_PrefabInstance: {fileID: 7306720316224811793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &610691012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610691007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b195d7e3801603f449c28f3f370ed95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 465434559}
 --- !u!1001 &704114872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2680,7 +2713,7 @@ PrefabInstance:
     - target: {fileID: 7306720315961370331, guid: c1179ec3eb02b184096016de073c6811,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.848
+      value: 2.8480005
       objectReference: {fileID: 0}
     - target: {fileID: 7306720315961370331, guid: c1179ec3eb02b184096016de073c6811,
         type: 3}
@@ -2700,12 +2733,12 @@ PrefabInstance:
     - target: {fileID: 7306720315961370331, guid: c1179ec3eb02b184096016de073c6811,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7306720315961370331, guid: c1179ec3eb02b184096016de073c6811,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7306720315961370331, guid: c1179ec3eb02b184096016de073c6811,
         type: 3}
