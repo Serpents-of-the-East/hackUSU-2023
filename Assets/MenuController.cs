@@ -158,9 +158,6 @@ public class MenuController : MonoBehaviour
             currentTurn = 0;
             alreadyUpdated = false;
         }
-
-
-
     }
 
 

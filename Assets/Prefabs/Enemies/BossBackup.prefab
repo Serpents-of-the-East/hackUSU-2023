@@ -153,3 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   animator: {fileID: 4531421438972276523}
+  enemyInformationText: {fileID: 4900000, guid: fb61dc1b2b60a3b4ea631f9992013957,
+    type: 3}
