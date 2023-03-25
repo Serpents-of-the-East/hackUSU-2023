@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -33,67 +34,178 @@ public class MenuController : MonoBehaviour
     public TMP_Text Action6;
 
 
-    public int currentSelectedOpponent = 0;
     public List<GameObject> opponents = new List<GameObject>();
     public List<GameObject> allies = new List<GameObject>();
     public int selectedPlayer = 0;
     public bool choosingOpponent = false;
     private Vector3 nav;
-    private int selectedMove = -1;
 
-    public List<int> selectedMoves = new();
-    public List<int> targetedOpponent = new();
+    private int selectedMove = -1; // locked in
+    public int currentSelectedOpponent = 0;
+    private int lockedInOpponentChoice = -1; // locked in
+
     public List<bool> disabled = new();
 
-
-
     public List<int> orderOfTurns = new();
+    private int currentTurnIndex = 0;
     private bool isAnimating = false;
-    private int animatedTurn = -1;
-    int yourTurns = 0;
-    private int currentTurn = 0;
 
     private bool alreadyUpdated = false;
-    private bool opponentAttacking = false;
     public bool victorious = false;
 
     // Start is called before the first frame update
     void Start()
     {
         lastSelectedScreen = overview;
+        disabled = new();
+        for (int i = 0; i < allies.Count + opponents.Count; i++)
+        {
+            disabled.Add(false);
+        }
+
+        DetermineOrder();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!victorious)
+
+        if (disabled.GetRange(4, disabled.Count - allies.Count).TrueForAll(e => e))
         {
-            if (yourTurns == 4)
-            {
-                if (!alreadyUpdated)
-                {
-                    DetermineOrder();
-
-                    //TODO: Update this with logic
-                    MonsterAttack();
-                    alreadyUpdated = true;
-                }
-                ProceedAttacking();
-
-                if (opponents.Count == 0)
-                {
-                    victorious = true;
-                }
-            }
+            victorious = true;
         }
         else
         {
-            Debug.Log("Victory!");
-        }
+            if (currentTurnIndex >= opponents.Count + allies.Count)
+            {
+                DetermineOrder();
 
+            }
+            else
+            {
+                if (!isAnimating)
+                {
+                    // Go to next person's turn
+                    HandleNextTurn();
+                }
+                else
+                {
+                    if (orderOfTurns[currentTurnIndex] < allies.Count)
+                    {
+                        // Check if player is in animation still
+                        var animationHandler = allies[orderOfTurns[currentTurnIndex]].GetComponent<AnimationHandler>();
+                        isAnimating = animationHandler.isPhysical || animationHandler.isMagic;
+                    }
+                    else
+                    { 
+                        EnemyScript enemy = opponents[orderOfTurns[currentTurnIndex] - allies.Count].GetComponentInChildren<EnemyScript>();
+                        isAnimating = enemy.isAttacking;
+                    }
+
+                }
+            }
+        }
     }
 
+    private void HandleNextTurn()
+    {
+        while (disabled[currentTurnIndex])
+        {
+            currentTurnIndex++;
+        }
 
+        if (orderOfTurns[currentTurnIndex] < allies.Count)
+        {
+            // Player turn
+            PlayerTurn();
+        }
+        else
+        {
+            Debug.Log("Enemy Turn Should happen");
+            EnemyScript enemy = opponents[orderOfTurns[currentTurnIndex] - allies.Count].GetComponentInChildren<EnemyScript>();
+            if (!enemy.isAttacking)
+            {
+                EnemyTurn();
+            }
+            // Enemy turn
+        }
+    }
+
+    private void PlayerTurn()
+    {
+        if (orderOfTurns[currentTurnIndex] > allies.Count - 1)
+        {
+            return;
+        }
+
+        if (selectedMove == -1)
+        {
+            eventSystem.SetActive(true);
+            overview.SetActive(true);
+        }
+        else if (lockedInOpponentChoice != -1)
+        {
+            // Finally, start animation, take mana, and damage
+
+            // Take mana
+            float damage = 0;
+            bool isPhysical = false;
+
+            switch(orderOfTurns[currentTurnIndex])
+            {
+                case 0:
+                    inventoryAndStats.blackMageStats.currentSP -= inventoryAndStats.blackMageMoves[selectedMove].spCost;
+                    damage = inventoryAndStats.blackMageMoves[selectedMove].damage;
+                    isPhysical = !inventoryAndStats.blackMageMoves[selectedMove].elemental;
+                    break;
+                case 1:
+                    inventoryAndStats.whiteMageStats.currentSP -= inventoryAndStats.whiteMageMoves[selectedMove].spCost;
+                    damage = inventoryAndStats.whiteMageMoves[selectedMove].damage;
+                    isPhysical = !inventoryAndStats.whiteMageMoves[selectedMove].elemental;
+                    break;
+                case 2:
+                    inventoryAndStats.warriorStats.currentSP -= inventoryAndStats.warriorMoves[selectedMove].spCost;
+                    damage = inventoryAndStats.warriorMoves[selectedMove].damage;
+                    isPhysical = !inventoryAndStats.warriorMoves[selectedMove].elemental;
+                    break;
+                case 3:
+                    inventoryAndStats.archerStats.currentSP -= inventoryAndStats.archerMoves[selectedMove].spCost;
+                    damage = inventoryAndStats.archerMoves[selectedMove].damage;
+                    isPhysical = !inventoryAndStats.archerMoves[selectedMove].elemental;
+                    break;
+                default:
+                    break;
+            }
+
+            // Dealt Damage
+            opponents[lockedInOpponentChoice].GetComponentInChildren<EnemyScript>().TakeDamage(inventoryAndStats.DealDamage(damage, isPhysical, orderOfTurns[currentTurnIndex]), isPhysical);
+            disabled[lockedInOpponentChoice + allies.Count] = opponents[lockedInOpponentChoice].GetComponentInChildren<EnemyScript>().isDead;
+
+            // Start Animation
+            isAnimating = true;
+            allies[orderOfTurns[currentTurnIndex]].GetComponent<AnimationHandler>().StartAnimation(isPhysical);
+
+            lockedInOpponentChoice = -1;
+            selectedMove = -1;
+            currentTurnIndex++;
+        }
+    }
+
+    private void EnemyTurn()
+    {
+        isAnimating = true;
+        inventoryAndStats.TakeDamage(Random.Range(0, 50), Random.Range(0, 2) == 0, Random.Range(0, allies.Count));
+
+        EnemyScript enemy = opponents[orderOfTurns[currentTurnIndex] - allies.Count].GetComponentInChildren<EnemyScript>();
+
+        disabled[0] = inventoryAndStats.blackMageStats.currentHealth <= 0;
+        disabled[1] = inventoryAndStats.whiteMageStats.currentHealth <= 0;
+        disabled[2] = inventoryAndStats.warriorStats.currentHealth <= 0;
+        disabled[3] = inventoryAndStats.archerStats.currentHealth <= 0;
+
+        enemy.StartAnimation();
+        currentTurnIndex++;
+    }
 
     public void ItemsMenuOpen()
     {
@@ -171,56 +283,23 @@ public class MenuController : MonoBehaviour
         lastSelectedScreen = EventSystem.current.currentSelectedGameObject;
         AttackMenu.SetActive(false);
         overview.SetActive(false);
-        opponents[0].GetComponent<SelectedScript>().isSelected = true;
+        for (int i = allies.Count; i < disabled.Count; i++)
+        {
+            if (!disabled[i])
+            {
+                opponents[i - allies.Count].GetComponent<SelectedScript>().isSelected = true;
+                break;
+            }
+        }
         selectedMove = id - 1;
-        selectedMoves.Add(id);
-
-        switch(selectedPlayer)
-        {
-            case 0:
-                inventoryAndStats.blackMageStats.currentSP -= inventoryAndStats.blackMageMoves[selectedMove].spCost;
-                break;
-            case 1:
-                inventoryAndStats.whiteMageStats.currentSP -= inventoryAndStats.whiteMageMoves[selectedMove].spCost;
-
-                break;
-            case 2:
-                inventoryAndStats.warriorStats.currentSP -= inventoryAndStats.warriorMoves[selectedMove].spCost;
-                break;
-            case 3:
-                inventoryAndStats.archerStats.currentSP -= inventoryAndStats.archerMoves[selectedMove].spCost;
-                break;
-            default:
-                break;
-        }
-
-
-
         eventSystem.SetActive(false);
-        choosingOpponent = true;
-        selectedPlayer++;
-        if (selectedPlayer > 3)
-        {
-            selectedPlayer = 0;
-        }
     }
 
     public void AttackMenuClose()
     {
         EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(overviewFirstSelected);
         lastSelectedScreen = EventSystem.current.currentSelectedGameObject;
-
         AttackMenu.SetActive(false);
-    }
-
-
-    public void MonsterAttack()
-    {
-        for (int i = 0; i < opponents.Count; i++)
-        {
-            selectedMoves.Add(1);
-            targetedOpponent.Add(Random.Range(0, 3));
-        }
     }
 
     public void DetermineOrder()
@@ -246,136 +325,7 @@ public class MenuController : MonoBehaviour
         {
             orderOfTurns.Add(i.Key);
         }
-
-    }
-
-    public void ProceedAttacking()
-    {
-        Debug.Log(currentTurn);
-        Debug.Log("Order of Turns: " + orderOfTurns[currentTurn]);
-        Debug.Log(targetedOpponent[orderOfTurns[currentTurn]]);
-        Debug.Log(opponents[targetedOpponent[orderOfTurns[currentTurn]]]);
-        Debug.Log("Opponent Count: " + opponents.Count);
-        if (opponents.Count == 0)
-        {
-            victorious = true;
-            return;
-        }
-
-        if (orderOfTurns[currentTurn] > opponents.Count + allies.Count)
-        {
-            yourTurns = 0;
-            eventSystem.SetActive(true);
-            overview.SetActive(true);
-            orderOfTurns.Clear();
-            selectedMoves.Clear();
-            targetedOpponent.Clear();
-            currentTurn = 0;
-            alreadyUpdated = false;
-
-            opponents.ForEach(e => Debug.Log(e.GetComponentInChildren<EnemyScript>().gameObject.name));
-
-            opponents.RemoveAll(e => e.GetComponentInChildren<EnemyScript>().isDead);
-        }
-
-
-        if (!opponentAttacking && orderOfTurns[currentTurn] < 4 && !isAnimating)
-        {
-            animatedTurn = currentTurn;
-            allies[orderOfTurns[animatedTurn]].GetComponent<AnimationHandler>().StartAnimation(false);
-            isAnimating = true;
-        }
-        else if (orderOfTurns[currentTurn] - allies.Count > 0 && opponents[orderOfTurns[currentTurn] - allies.Count].GetComponentInChildren<EnemyScript>().isDead)
-        {
-            currentTurn++;
-        }
-        else if (targetedOpponent[orderOfTurns[currentTurn]] < targetedOpponent.Count && opponents[targetedOpponent[orderOfTurns[currentTurn]]] != null && !opponentAttacking && orderOfTurns[currentTurn] < 4 && animatedTurn != -1 && !(allies[orderOfTurns[animatedTurn]].GetComponent<AnimationHandler>().isMagic || allies[orderOfTurns[animatedTurn]].GetComponent<AnimationHandler>().isPhysical))
-        {
-            float damage = 0;
-            bool isPhysical = false;
-
-            switch (orderOfTurns[currentTurn])
-            {
-                case 0:
-                    damage = inventoryAndStats.blackMageMoves[selectedMove].damage;
-                    isPhysical = !inventoryAndStats.blackMageMoves[selectedMove].elemental;
-                    break;
-                case 1:
-                    damage = inventoryAndStats.whiteMageMoves[selectedMove].damage;
-                    isPhysical = !inventoryAndStats.whiteMageMoves[selectedMove].elemental;
-                    break;
-                case 2:
-                    damage = inventoryAndStats.warriorMoves[selectedMove].damage;
-                    isPhysical = !inventoryAndStats.warriorMoves[selectedMove].elemental;
-                    break;
-                case 3:
-                    damage = inventoryAndStats.archerMoves[selectedMove].damage;
-                    isPhysical = !inventoryAndStats.archerMoves[selectedMove].elemental;
-                    break;
-                default:
-                    break;
-            }
-
-            if (opponents[targetedOpponent[orderOfTurns[animatedTurn]]].GetComponentInChildren<EnemyScript>() != null && opponents[targetedOpponent[orderOfTurns[animatedTurn]]].GetComponentInChildren<EnemyScript>().gameObject.activeSelf)
-            {
-
-                opponents[targetedOpponent[orderOfTurns[animatedTurn]]].GetComponentInChildren<EnemyScript>().TakeDamage(inventoryAndStats.DealDamage(damage * 1000, isPhysical, orderOfTurns[currentTurn]), isPhysical);
-
-                if (opponents[targetedOpponent[orderOfTurns[animatedTurn]]].GetComponentInChildren<EnemyScript>().isDead)
-                {
-                    opponents[targetedOpponent[orderOfTurns[animatedTurn]]].GetComponentInChildren<EnemyScript>().gameObject.SetActive(false);
-                }
-
-            }
-
-            /*            if (opponents[targetedOpponent[orderOfTurns[animatedTurn]]] != null && )
-                        {
-                            Debug.Log("It's dead");
-                            //opponents.Remove(opponents[targetedOpponent[orderOfTurns[animatedTurn]]]);
-                        }*/
-
-
-            isAnimating = false;
-            currentTurn++;
-        }
-        else if (orderOfTurns[currentTurn] >= 4 && !isAnimating && (opponents[targetedOpponent[orderOfTurns[animatedTurn]]].GetComponentInChildren<EnemyScript>()?.gameObject?.activeSelf ?? false))
-        {
-            animatedTurn = currentTurn;
-            opponentAttacking = true;
-            opponents[orderOfTurns[animatedTurn] - allies.Count].GetComponentInChildren<EnemyScript>().StartAnimation();
-            isAnimating = true;
-        }
-        else if (opponentAttacking && isAnimating && !opponents[orderOfTurns[animatedTurn] - allies.Count].GetComponentInChildren<EnemyScript>().isAttacking)
-        {
-            opponentAttacking = false;
-            opponents[orderOfTurns[animatedTurn] - allies.Count].GetComponentInChildren<EnemyScript>().isAttacking = false;
-
-
-            inventoryAndStats.TakeDamage(Random.Range(0, 50), Random.Range(0, 2) == 0, (targetedOpponent[orderOfTurns[animatedTurn] - allies.Count]));
-
-            isAnimating = false;
-            currentTurn++;
-            animatedTurn = -1;
-        }
-        else
-        {
-            currentTurn++;
-        }
-
-        if (currentTurn > allies.Count + opponents.Count - 1)
-        {
-            yourTurns = 0;
-            eventSystem.SetActive(true);
-            overview.SetActive(true);
-            orderOfTurns.Clear();
-            selectedMoves.Clear();
-            targetedOpponent.Clear();
-            currentTurn = 0;
-            alreadyUpdated = false;
-
-            opponents.RemoveAll((e => e.GetComponentInChildren<EnemyScript>().isDead));
-
-        }
+        currentTurnIndex = 0;
     }
 
 
@@ -394,81 +344,51 @@ public class MenuController : MonoBehaviour
             lastSelectedScreen = EventSystem.current.currentSelectedGameObject;
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(overviewFirstSelected);
         }
-        // TODO: Let them go back to move selection
-        else if (inputValue.isPressed && !eventSystem.activeSelf)
-        {
-
-        }
     }
 
 
     public void OnSubmit(InputValue inputValue)
     {
-        if (inputValue.isPressed && !eventSystem.activeSelf && yourTurns < 3)
+        if (selectedMove == -1 || currentTurnIndex == -1 || orderOfTurns[currentTurnIndex] >= allies.Count || isAnimating)
         {
-            this.selectedMoves.Add(selectedMove);
-            this.targetedOpponent.Add(currentSelectedOpponent);
-            Debug.Log("Currently Selected: " + currentSelectedOpponent);
-            Debug.Log("Currently opponet: " + opponents[currentSelectedOpponent]);
-
-            eventSystem.SetActive(true);
-            choosingOpponent = false;
-            overview.SetActive(true);
-            opponents[currentSelectedOpponent].GetComponent<SelectedScript>().isSelected = false;
-            yourTurns++;
+            return;
         }
-        if (inputValue.isPressed && !eventSystem.activeSelf && yourTurns == 3)
-        {
-            this.selectedMoves.Add(selectedMove);
-            this.targetedOpponent.Add(currentSelectedOpponent);
 
-            choosingOpponent = false;
+        // We have a move, and have now selected enemy
+        if (inputValue.isPressed && selectedMove != -1)
+        {
             opponents[currentSelectedOpponent].GetComponent<SelectedScript>().isSelected = false;
-            yourTurns++;
+            lockedInOpponentChoice = currentSelectedOpponent;
         }
     }
 
 
     public void OnSelectEnemy(InputValue inputValue)
     {
-        if (!eventSystem.activeSelf)
+        if (selectedMove != -1)
         {
             nav = inputValue.Get<Vector2>();
 
-            if (currentSelectedOpponent < opponents.Count)
+            if (currentSelectedOpponent != -1)
             {
                 opponents[currentSelectedOpponent].GetComponent<SelectedScript>().isSelected = false;
             }
-            else
+            int direction = nav.y > 0 ? 1 : -1;
+            currentSelectedOpponent += direction;
+            if (currentSelectedOpponent < 0)
             {
                 currentSelectedOpponent = opponents.Count - 1;
             }
-
-            if (opponents.Count == 1)
+            currentSelectedOpponent %= opponents.Count;
+            while (disabled[allies.Count + currentSelectedOpponent])
             {
-                currentSelectedOpponent = 0;
-            }
-            else
-            {
-                if (nav.y > 0)
+                currentSelectedOpponent += direction;
+                if (currentSelectedOpponent < 0)
                 {
-
-                    currentSelectedOpponent -= 1;
-                    if (currentSelectedOpponent < 0)
-                    {
-                        currentSelectedOpponent = opponents.Count - 1;
-                    }
+                    currentSelectedOpponent = opponents.Count - 1;
                 }
-                else if (nav.y < 0)
-                {
-                    currentSelectedOpponent += 1;
-                    if (currentSelectedOpponent > opponents.Count - 1)
-                    {
-                        currentSelectedOpponent = 0;
-                    }
-                }
+                currentSelectedOpponent %= opponents.Count;
             }
-           
 
             opponents[currentSelectedOpponent].GetComponent<SelectedScript>().isSelected = true;
         }

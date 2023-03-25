@@ -31,7 +31,7 @@ public class InventoryAndStats : MonoBehaviour
     string[] lines;
 
 
-    private void Start()
+    private void Awake()
     {
         whiteMageStats = new CharacterStats()
         {
