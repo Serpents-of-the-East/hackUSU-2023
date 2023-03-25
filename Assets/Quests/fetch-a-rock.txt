@@ -1,0 +1,8 @@
+1
+Find the old man's beloved rock.
+"Ah, young one, I am in great distress! I have lost my beloved rock and I fear that it may be lost forever. You see, this rock has been in my family for generations and it holds great sentimental value to me. I have searched high and low for it, but alas, it is nowhere to be found. It could have rolled down the hill or been carried away by the river, but I am not certain. That is why I come to you, for I have heard that you are a skilled searcher and can find anything that is lost. Please, young one, I beg of you, help me find my beloved rock. It may just be a simple stone to others, but to me, it is a treasure that cannot be replaced."
+The old man would like you to find his rock, an heirloom of his family. He's pretty distraught, so you may as well help him.
+"Oh, thank you, thank you, young one! You have truly lifted a great burden from my heart. I am forever grateful to you for finding my beloved rock. It brings tears to my eyes to see it once again. You have no idea how much this rock means to me and how much joy it brings me to have it back in my possession. It may seem like a simple thing to some, but to me, it is a symbol of my family's history and traditions. I will never forget your kindness and I will make sure that the whole village knows of your great deed. You are a true hero in my eyes, young one. May the gods bless you for your goodness and bring you great fortune and happiness in your life."
+You found the old man's rock, bringing his praise.
+Old Man's Rock
+false
