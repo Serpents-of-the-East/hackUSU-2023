@@ -57,7 +57,8 @@ public class InteractableNPC : MonoBehaviour
             dialogueTexture.SetActive(false);
             canvasDialogueInGame.gameObject.SetActive(true);
             textDialogueInGame.text = currentLine;
-            audioSource.PlayOneShot(audioClips[lineOfText]);
+            audioSource.clip = audioClips[lineOfText];
+            audioSource.Play();
               
             firstInteraction = false;
             interactedWith = false;
@@ -74,7 +75,13 @@ public class InteractableNPC : MonoBehaviour
                 if (audioSource != null && audioSource.isPlaying)
                 {
                     audioSource.Stop();
-                    audioSource.PlayOneShot(audioClips[lineOfText]);
+                    audioSource.clip = audioClips[lineOfText];
+                    audioSource.Play();
+                }
+                else if (audioSource != null)
+                {
+                    audioSource.clip = audioClips[lineOfText];
+                    audioSource.Play();
                 }
             }
             else
