@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7268035730394183638}
   - component: {fileID: 7268035730394183639}
   - component: {fileID: 7268035730394183636}
+  - component: {fileID: 3211082039039155217}
   m_Layer: 0
   m_Name: arc
   m_TagString: Untagged
@@ -137,6 +138,31 @@ MonoBehaviour:
   physChargingSoundEffect: {fileID: 0}
   physAttackSoundEffect: {fileID: 8300000, guid: 437d7254db292ac4292fcf2ba788f0ac,
     type: 3}
+--- !u!114 &3211082039039155217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268035730394183632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ba2493347c54b46b5ee02f8bdcc56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {r: 0.9056604, g: 0.4465218, b: 0.13243146, a: 0}
+  ice: {r: 0.67768776, g: 0.9150943, b: 0.84255403, a: 0}
+  lightning: {r: 0.8962264, g: 0.81050014, b: 0.063412234, a: 0}
+  wind: {r: 0.37121755, g: 0.8113208, b: 0.37244457, a: 0}
+  dark: {r: 0.30380115, g: 0.13269848, b: 0.3962264, a: 0}
+  lightColor: {r: 0.9811321, g: 0.9752533, b: 0.763617, a: 0}
+  poison: {r: 0.46519655, g: 0.374466, b: 0.9339623, a: 0}
+  water: {r: 0.25943398, g: 0.6445537, b: 1, a: 0}
+  ground: {r: 0.5188679, g: 0.32438585, b: 0.23740655, a: 0}
+  magicCharge: {fileID: 138740881884979271}
+  magicAttack: {fileID: 6324712651036190444}
+  physCharge: {fileID: 0}
+  physAttack: {fileID: 8352412641506071626}
 --- !u!1 &7268035731222758801
 GameObject:
   m_ObjectHideFlags: 0
