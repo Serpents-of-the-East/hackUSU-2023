@@ -972,6 +972,16 @@ PrefabInstance:
       objectReference: {fileID: 1453166539}
     - target: {fileID: 1441668717225960515, guid: 7f43e890356275d4a8d58ab18581ac3e,
         type: 3}
+      propertyPath: physAttackSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: bd782bab5eee1754cbe961e1c4daab93, type: 3}
+    - target: {fileID: 1441668717225960515, guid: 7f43e890356275d4a8d58ab18581ac3e,
+        type: 3}
+      propertyPath: physChargingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 66b52a86ba7c0ef4e9188ea85169083a, type: 3}
+    - target: {fileID: 1441668717225960515, guid: 7f43e890356275d4a8d58ab18581ac3e,
+        type: 3}
       propertyPath: magicChargingSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: 5d37d793bda90a44bb091d0815871e00, type: 3}

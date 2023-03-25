@@ -75,5 +75,15 @@ public class ParticleHandler : MonoBehaviour
             attack.Play();
         }
     }
+
+    public void StopChargingEffect()
+    {
+        charging.Stop();
+    }
+
+    public void StopAttackEffect()
+    {
+        attack.Stop();
+    }
     
 }
