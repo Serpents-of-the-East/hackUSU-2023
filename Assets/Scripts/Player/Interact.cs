@@ -8,10 +8,12 @@ public class Interact : MonoBehaviour
 {
     private InteractableNPC currentInteraction = null;
     public bool isInteracting = false;
+    public PlayerInventory inventory;
 
     // Start is called before the first frame update
     void Start()
     {
+        inventory = GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,11 @@ public class Interact : MonoBehaviour
         if (currentInteraction != null && currentInteraction.completedTalkingTo)
         {
             isInteracting = false;
+            if (currentInteraction.quest != null)
+            {
+                inventory.AddQuest(currentInteraction.quest);
+                currentInteraction.quest = null;
+            }
         }
     }
 

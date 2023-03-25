@@ -48,7 +48,7 @@ public class Quest
     public int id;
     public string Name { get; set; }
     public string Description { get; set; }
-    public string Type { get; set; } // Optional vs. Required
+    public bool Required { get; set; } // Optional False
     public bool Completed { get; set; }
 }
 
