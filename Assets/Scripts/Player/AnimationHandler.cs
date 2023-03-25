@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
+    public bool isPhysical;
+    public bool isMagic;
+
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +18,33 @@ public class AnimationHandler : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartAnimation(bool isPhysical)
+    {
+        if (isPhysical)
+        {
+            this.isPhysical = true;
+            animator.SetBool("isPhysical", true);
+        }
+        else
+        {
+            this.isMagic = true;
+            animator.SetBool("isMagic", true);
+        }
+    }
+
+    public void OnCompleteAnimation()
+    {
+        if (isPhysical)
+        {
+            this.isPhysical = false;
+            animator.SetBool("isPhysical", false);
+        } 
+        else if (isMagic)
+        {
+            this.isMagic = false;
+            animator.SetBool("isMagic", false);
+        }
     }
 }

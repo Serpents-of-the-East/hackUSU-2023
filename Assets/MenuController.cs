@@ -25,6 +25,7 @@ public class MenuController : MonoBehaviour
 
     public int currentSelectedOpponent = 0;
     public List<GameObject> opponents = new List<GameObject>();
+    public List<GameObject> allies = new List<GameObject>();
 
     public bool choosingOpponent = false;
     private Vector3 nav;
@@ -34,8 +35,12 @@ public class MenuController : MonoBehaviour
     public List<int> targettedOpponent = new();
 
     public List<int> orderOfTurns = new();
+    private bool isAnimating = false;
+    private int animatedTurn = -1;
     int yourTurns = 0;
+    private int currentTurn = 0;
 
+    private bool alreadyUpdated = false;
 
 
     // Start is called before the first frame update
@@ -49,8 +54,16 @@ public class MenuController : MonoBehaviour
     {
         if (yourTurns == 4)
         {
+            if (!alreadyUpdated)
+            {
+                DetermineOrder();
+
+                //TODO: Update this with logic
+                MonsterAttack();
+                alreadyUpdated = true;
+            }
             ProceedAttacking();
-            yourTurns = 0;
+
         }
     }
 
@@ -104,11 +117,49 @@ public class MenuController : MonoBehaviour
         AttackMenu.SetActive(false);
     }
 
+
+    public void MonsterAttack()
+    {
+        for (int i = 0; i < opponents.Count; i++)
+        {
+            selectedMoves.Add(1);
+            
+        }
+    }
+
+    public void DetermineOrder()
+    {
+        for (int i = 0; i < opponents.Count + allies.Count; i++)
+            orderOfTurns.Add(i);
+    }
+    
     public void ProceedAttacking()
     {
-        Debug.Log("Proceeding!");
-        eventSystem.SetActive(true);
-        overview.SetActive(true);
+        if (orderOfTurns[currentTurn] < 4 && !isAnimating)
+        {
+            animatedTurn = currentTurn;
+            allies[orderOfTurns[animatedTurn]].GetComponent<AnimationHandler>().StartAnimation(false);
+            isAnimating = true;
+        }
+        else if (animatedTurn != -1 && !(allies[orderOfTurns[animatedTurn]].GetComponent<AnimationHandler>().isMagic || allies[orderOfTurns[animatedTurn]].GetComponent<AnimationHandler>().isPhysical))
+        {
+            isAnimating = false;
+            currentTurn++;
+        }
+        
+        if (currentTurn > allies.Count - 1 + opponents.Count - 1)
+        {
+            yourTurns = 0;
+            eventSystem.SetActive(true);
+            overview.SetActive(true);
+            orderOfTurns.Clear();
+            selectedMoves.Clear();
+            targettedOpponent.Clear();
+            currentTurn = 0;
+            alreadyUpdated = false;
+        }
+
+
 
     }
 
