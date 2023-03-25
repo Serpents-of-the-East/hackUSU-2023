@@ -1248,6 +1248,7 @@ MonoBehaviour:
   - {fileID: 565055781}
   - {fileID: 1049802482}
   - {fileID: 1979773486}
+  inventoryAndStats: {fileID: 0}
   maxHealth:
   - 100
   - 100
@@ -5209,9 +5210,15 @@ MonoBehaviour:
   attackFirstSelected: {fileID: 6080049914082412229}
   ItemsMenu: {fileID: 6080049913694816634}
   itemsFirstSelected: {fileID: 6080049912617907362}
+  inventoryAndStats: {fileID: 0}
   eventSystem: {fileID: 6080049912264335072}
   lastSelectedScreen: {fileID: 0}
-  currentSelectedOpponent: 0
+  Action1: {fileID: 6080049913013759609}
+  Action2: {fileID: 6080049912553473555}
+  Action3: {fileID: 6080049914309310003}
+  Action4: {fileID: 6080049914079150035}
+  Action5: {fileID: 6080049912357771775}
+  Action6: {fileID: 6080049912881195435}
   opponents:
   - {fileID: 0}
   - {fileID: 0}
@@ -5221,10 +5228,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  selectedPlayer: 0
   choosingOpponent: 0
-  selectedMoves: 
-  targettedOpponent: 
+  currentSelectedOpponent: 0
+  disabled: 
   orderOfTurns: 
+  victorious: 0
 --- !u!114 &2121031131
 MonoBehaviour:
   m_ObjectHideFlags: 0

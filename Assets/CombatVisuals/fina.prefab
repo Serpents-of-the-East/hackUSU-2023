@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 1441668717225960515}
   - component: {fileID: 1887420733557973045}
   - component: {fileID: 502254230}
+  - component: {fileID: 7710504210874213405}
   m_Layer: 0
   m_Name: fina
   m_TagString: Untagged
@@ -423,6 +424,21 @@ MonoBehaviour:
   physCharge: {fileID: 7965767663240563159}
   physAttack: {fileID: 1441668717097301868}
 --- !u!114 &502254230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441668717225960511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608adba20e384304294694d9b1cae836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhysical: 0
+  isMagic: 0
+  animator: {fileID: 1441668717225960510}
+--- !u!114 &7710504210874213405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

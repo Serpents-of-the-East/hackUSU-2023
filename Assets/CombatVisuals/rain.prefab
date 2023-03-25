@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 8497435843741345091}
   - component: {fileID: 866211863284171325}
   - component: {fileID: 1176018784}
+  - component: {fileID: 1449229154954086931}
   m_Layer: 0
   m_Name: rain
   m_TagString: Untagged
@@ -422,6 +423,21 @@ MonoBehaviour:
   physCharge: {fileID: 7316435328518708466}
   physAttack: {fileID: 3997272725532395203}
 --- !u!114 &1176018784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135586963174950658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608adba20e384304294694d9b1cae836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhysical: 0
+  isMagic: 0
+  animator: {fileID: 5135586963174950659}
+--- !u!114 &1449229154954086931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

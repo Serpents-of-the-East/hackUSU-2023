@@ -66,3 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ec659825b272d40bdce0dc2b207d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteMageTxt: {fileID: 4900000, guid: 83710d6f7b599e643b0e6fd7c4399c9b, type: 3}
+  blackMageTxt: {fileID: 4900000, guid: a87c5018f9b5cd34b953934d5a540660, type: 3}
+  warriorTxt: {fileID: 4900000, guid: 2da097b8d69eed74285168b8c9d46cf8, type: 3}
+  archerTxt: {fileID: 4900000, guid: 0b8a5444d3ecd654ebb8bf93800803b7, type: 3}
