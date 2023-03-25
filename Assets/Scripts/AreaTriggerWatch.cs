@@ -12,7 +12,11 @@ public class AreaTriggerWatch : MonoBehaviour
             GameObject travelObj = GameObject.FindGameObjectWithTag("TravelHandler");
             TravelHandler travelHandler = travelObj.GetComponent<TravelHandler>();
             travelHandler.lastPointTouched = TravelHandler.LastPointTouched.city_to_forest;
-            SceneManager.LoadScene("ForestPath_Day");
+
+            CrossFade crossFade = FindObjectOfType<CrossFade>();
+
+            crossFade.LoadScene("ForestPath_Day");
+
         }
 
         if (other.gameObject.CompareTag("ToTown"))
@@ -20,7 +24,9 @@ public class AreaTriggerWatch : MonoBehaviour
             GameObject travelObj = GameObject.FindGameObjectWithTag("TravelHandler");
             TravelHandler travelHandler = travelObj.GetComponent<TravelHandler>();
             travelHandler.lastPointTouched = TravelHandler.LastPointTouched.forest_to_city;
-            SceneManager.LoadScene("Village_Day");
+            CrossFade crossFade = FindObjectOfType<CrossFade>();
+
+            crossFade.LoadScene("Village_Day");
         }
     }
 }
