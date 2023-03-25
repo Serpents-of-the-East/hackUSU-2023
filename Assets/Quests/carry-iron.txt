@@ -1,0 +1,7 @@
+3
+Help the Blacksmith.
+Could you help this old man out?
+I'm the local blacksmith for this town, but recently I threw my back out and now I can't clean up this iron.
+Would you help me pick up the iron? I would appreciate it quite a lot. 
+Iron
+false
