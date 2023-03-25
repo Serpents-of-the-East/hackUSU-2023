@@ -69,6 +69,13 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = allies.Count; i < disabled.Count; i++)
+        {
+            if (disabled[i])
+            {
+                opponents[i - allies.Count].transform.localScale = Vector3.zero;
+            }
+        }
 
         if (disabled.GetRange(4, disabled.Count - allies.Count).TrueForAll(e => e))
         {
@@ -97,7 +104,7 @@ public class MenuController : MonoBehaviour
                         isAnimating = animationHandler.isPhysical || animationHandler.isMagic;
                     }
                     else
-                    { 
+                    {
                         EnemyScript enemy = opponents[orderOfTurns[currentTurnIndex] - allies.Count].GetComponentInChildren<EnemyScript>();
                         isAnimating = enemy.isAttacking;
                     }
@@ -112,6 +119,10 @@ public class MenuController : MonoBehaviour
         while (disabled[currentTurnIndex])
         {
             currentTurnIndex++;
+            if (currentTurnIndex >= disabled.Count)
+            {
+                currentTurnIndex = 0;
+            }
         }
 
         if (orderOfTurns[currentTurnIndex] < allies.Count)
@@ -151,7 +162,7 @@ public class MenuController : MonoBehaviour
             float damage = 0;
             bool isPhysical = false;
 
-            switch(orderOfTurns[currentTurnIndex])
+            switch (orderOfTurns[currentTurnIndex])
             {
                 case 0:
                     inventoryAndStats.blackMageStats.currentSP -= inventoryAndStats.blackMageMoves[selectedMove].spCost;
@@ -180,6 +191,7 @@ public class MenuController : MonoBehaviour
             // Dealt Damage
             opponents[lockedInOpponentChoice].GetComponentInChildren<EnemyScript>().TakeDamage(inventoryAndStats.DealDamage(damage, isPhysical, orderOfTurns[currentTurnIndex]), isPhysical);
             disabled[lockedInOpponentChoice + allies.Count] = opponents[lockedInOpponentChoice].GetComponentInChildren<EnemyScript>().isDead;
+
 
             // Start Animation
             isAnimating = true;
@@ -235,7 +247,7 @@ public class MenuController : MonoBehaviour
 
 
         // Set the move names
-        switch(selectedPlayer)
+        switch (selectedPlayer)
         {
             case 0:
                 Action1.text = inventoryAndStats.blackMageMoves[0].Name;
@@ -311,7 +323,7 @@ public class MenuController : MonoBehaviour
             if (i < allies.Count)
             {
                 order.Add(new KeyValuePair<int, float>(i, inventoryAndStats.GetSpeed(i)));
-            } 
+            }
             else
             {
                 order.Add(new KeyValuePair<int, float>(i, opponents[i - allies.Count].GetComponentInChildren<EnemyScript>().GetSpeed()));
@@ -321,7 +333,7 @@ public class MenuController : MonoBehaviour
         order.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
 
 
-        foreach (var i in  order)
+        foreach (var i in order)
         {
             orderOfTurns.Add(i.Key);
         }
@@ -337,7 +349,7 @@ public class MenuController : MonoBehaviour
             {
                 AttackMenu.SetActive(false);
             }
-            else if(ItemsMenu.activeSelf)
+            else if (ItemsMenu.activeSelf)
             {
                 ItemsMenu.SetActive(false);
             }

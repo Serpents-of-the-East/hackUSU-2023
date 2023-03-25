@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
     string[] lines;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         this.animator = GetComponentInChildren<Animator>();
         enemyInformation = new();
